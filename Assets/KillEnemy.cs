@@ -21,7 +21,10 @@ public class KillEnemy : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            Debug.Log("touched1");
+            StartCoroutine(Dying());
+        }
+        else if (collision.gameObject.CompareTag("Trap"))
+        {
             StartCoroutine(Dying());
         }
     }
