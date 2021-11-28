@@ -8,6 +8,7 @@ TagManager:
   - LeftWP
   - RightWP
   - GlobalLight
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -15,12 +15,12 @@ public class CameraController : MonoBehaviour
         if (player.GetComponent<SpriteRenderer>().flipX == true)
         {
             offsetX = -5f;
-            offsetY = 3f;
+            offsetY = 1f;
         }
         else
         {
             offsetX = 5f;
-            offsetY = 3f;
+            offsetY = 1f;
         }
         transform.position = new Vector3(player.position.x + offsetX, player.position.y + offsetY, transform.position.z);
 

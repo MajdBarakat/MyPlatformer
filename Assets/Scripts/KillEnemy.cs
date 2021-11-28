@@ -23,15 +23,10 @@ public class KillEnemy : MonoBehaviour
         {
             StartCoroutine(Dying());
         }
-        else if (collision.gameObject.CompareTag("Trap"))
-        {
-            StartCoroutine(Dying());
-        }
     }
 
     private IEnumerator Dying()
     {
-        Debug.Log("touched");
         rigidBody.velocity = new Vector2(0, launchForce);
         GetComponent<BoxCollider2D>().enabled = false;
         GameObject.Find(nameOfKillbox).GetComponent<BoxCollider2D>().enabled = false ;
