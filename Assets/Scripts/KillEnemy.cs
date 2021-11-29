@@ -29,7 +29,7 @@ public class KillEnemy : MonoBehaviour
     {
         rigidBody.velocity = new Vector2(0, launchForce);
         GetComponent<BoxCollider2D>().enabled = false;
-        GameObject.Find(nameOfKillbox).GetComponent<BoxCollider2D>().enabled = false ;
+        GameObject.Find(nameOfKillbox).GetComponent<BoxCollider2D>().enabled = false;
         GetComponentInParent<WaypointFollower>().enabled = false;
         animator.SetTrigger("death");
         yield return new WaitForSeconds(1f);
