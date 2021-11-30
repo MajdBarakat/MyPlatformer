@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sprite;
 
-    private enum MovementState { idle, walking};
+    private enum MovementState { idle, walking, attack, hit};
 
     void Start()
     {

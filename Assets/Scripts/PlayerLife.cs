@@ -7,6 +7,7 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody2D rigidBody;
+    [SerializeField] private AudioSource deathSE;
 
     private void Start()
     {
@@ -30,12 +31,15 @@ public class PlayerLife : MonoBehaviour
     {
         rigidBody.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
-        Debug.Log("died");
-        ResetLevel();
+        StartCoroutine(ResetLevel());
     }
 
-    private void ResetLevel()
+    private IEnumerator ResetLevel()
     {
+        deathSE.Play();
+        gameObject.GetComponent<Renderer>().enabled = false;
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

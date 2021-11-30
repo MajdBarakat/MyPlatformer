@@ -9,6 +9,8 @@ public class KillEnemy : MonoBehaviour
     private Rigidbody2D rigidBody;
     [SerializeField] private float launchForce;
     [SerializeField] private string nameOfKillbox;
+    [SerializeField] private AudioSource killSE;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class KillEnemy : MonoBehaviour
 
     private IEnumerator Dying()
     {
+        killSE.Play();
         rigidBody.velocity = new Vector2(0, launchForce);
         GetComponent<BoxCollider2D>().enabled = false;
         GameObject.Find(nameOfKillbox).GetComponent<BoxCollider2D>().enabled = false;

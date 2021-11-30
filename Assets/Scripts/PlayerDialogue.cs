@@ -7,17 +7,16 @@ using TMPro;
 public class PlayerDialogue : MonoBehaviour
 {
     public TextMeshPro dialogue;
-    [SerializeField] private float offsetX;
-    [SerializeField] private float offsetY;
     [SerializeField] private float intreval = 0.1f;
+    [SerializeField] private float timeBetween;
+    [SerializeField] private string[] dialogueList;
     private string currentText = "";
 
 
     void Start()
     {
         dialogue = GetComponent<TextMeshPro>();
-        offsetX = 0f;
-        offsetY = 3f;
+        StartCoroutine(Dialogue(dialogueList));
     }
 
     IEnumerator ShowText(string fulltext)
@@ -30,13 +29,13 @@ public class PlayerDialogue : MonoBehaviour
         }
     }
 
-    public IEnumerator Dialogue(string fulltext)
+    IEnumerator Dialogue(string[] dialogueList)
     {
-        Debug.Log("got here 2");
-        StartCoroutine(ShowText("Where... where am I?  "));
-        Debug.Log("got here 3");
-        yield return new WaitForSeconds(3f);
-        fulltext = "";
-        dialogue.text = fulltext;
+        for (int i = 0; i < dialogueList.Length; i++)
+        {
+        StartCoroutine(ShowText(dialogueList[i]));
+        yield return new WaitForSeconds(timeBetween);
+        }
+        dialogue.text = "";
     }
 }

@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float jumpForce = 15f;
 
+    [SerializeField] private AudioSource walkSE;
+    [SerializeField] private AudioSource jumpSE;
+    
+
     private enum MovementState {idle, running, jumping, falling, none };
 
     // Start is called before the first frame update
@@ -36,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && UpdateGroundedState())
         {
+            jumpSE.Play();
             rigidBody.velocity = new Vector2(0, jumpForce);
         }
 
@@ -50,11 +55,20 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.running;
             sprite.flipX = false;
+            if (walkSE.isPlaying == false && UpdateGroundedState())
+            {
+                walkSE.Play();
+            }
         }
         else if (dirX < 0)
         {
+
             state = MovementState.running;
             sprite.flipX = true;
+            if(walkSE.isPlaying == false && UpdateGroundedState())
+            {
+            walkSE.Play();
+            }
         }
         else
         {
